@@ -1,1 +1,0 @@
-git commit -F patch.txt
