@@ -1,3 +1,231 @@
-[gd_scene format=2]
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://985d0e23a7363c7.png" type="Texture" id=1]
+[ext_resource path="res://Screenshot_4.png" type="Texture" id=2]
+[ext_resource path="res://ab66b39c28b511815e34a87e081be248.jpeg" type="Texture" id=3]
+[ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform sampler2D Gold;
+
+void fragment()
+{
+	COLOR = texture(Gold, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/Gold = ExtResource( 4 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform sampler2D Tree;
+
+void fragment()
+{
+	COLOR = texture(Tree, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/Tree = ExtResource( 3 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D Map;
+
+void fragment()
+{
+	COLOR = texture(Map, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Map = ExtResource( 1 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform sampler2D Image;
+
+void fragment()
+{
+	COLOR = texture(Image, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/Image = ExtResource( 2 )
 
 [node name="Node2D" type="Node2D"]
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 1366.0
+margin_bottom = 768.0
+
+[node name="Resources" type="ColorRect" parent="HUD"]
+margin_left = 800.0
+margin_right = 1366.0
+margin_bottom = 70.0
+
+[node name="Gold" type="ColorRect" parent="HUD/Resources"]
+material = SubResource( 6 )
+margin_right = 70.0
+margin_bottom = 70.0
+
+[node name="Value" type="Label" parent="HUD/Resources/Gold"]
+margin_left = 70.0
+margin_right = 283.0
+margin_bottom = 70.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Tree" type="ColorRect" parent="HUD/Resources"]
+material = SubResource( 8 )
+margin_left = 284.0
+margin_right = 354.0
+margin_bottom = 70.0
+
+[node name="Value" type="Label" parent="HUD/Resources/Tree"]
+margin_left = 70.0
+margin_right = 283.0
+margin_bottom = 70.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Time" type="ColorRect" parent="HUD"]
+margin_left = 500.0
+margin_right = 800.0
+margin_bottom = 70.0
+
+[node name="Timer" type="Label" parent="HUD/Time"]
+margin_right = 70.0
+margin_bottom = 70.0
+
+[node name="Time" type="Label" parent="HUD/Time"]
+margin_left = 70.0
+margin_right = 300.0
+margin_bottom = 70.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="HUD"]
+margin_right = 500.0
+margin_bottom = 70.0
+text = "Menu"
+
+[node name="Minimap" type="ColorRect" parent="HUD"]
+material = SubResource( 2 )
+margin_top = 568.0
+margin_right = 400.0
+margin_bottom = 768.0
+
+[node name="Abilities" type="Control" parent="HUD"]
+margin_left = 966.0
+margin_top = 568.0
+margin_right = 1366.0
+margin_bottom = 768.0
+
+[node name="Button" type="Button" parent="HUD/Abilities"]
+margin_right = 100.0
+margin_bottom = 100.0
+text = "Main"
+
+[node name="Button2" type="Button" parent="HUD/Abilities"]
+margin_left = 100.0
+margin_right = 200.0
+margin_bottom = 100.0
+text = "Wall"
+
+[node name="Button3" type="Button" parent="HUD/Abilities"]
+margin_left = 200.0
+margin_right = 300.0
+margin_bottom = 100.0
+text = "Mine"
+
+[node name="Button4" type="Button" parent="HUD/Abilities"]
+margin_left = 300.0
+margin_right = 400.0
+margin_bottom = 100.0
+text = "Lumbermill"
+
+[node name="Button5" type="Button" parent="HUD/Abilities"]
+margin_top = 100.0
+margin_right = 100.0
+margin_bottom = 200.0
+text = "Turret1"
+
+[node name="Button6" type="Button" parent="HUD/Abilities"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 200.0
+text = "Turret2"
+
+[node name="Button7" type="Button" parent="HUD/Abilities"]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 200.0
+text = "Turret3"
+
+[node name="Button8" type="Button" parent="HUD/Abilities"]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 200.0
+text = "Turret4"
+
+[node name="Preview" type="Control" parent="HUD"]
+margin_left = 400.0
+margin_top = 568.0
+margin_right = 966.0
+margin_bottom = 768.0
+
+[node name="Image" type="ColorRect" parent="HUD/Preview"]
+material = SubResource( 4 )
+margin_right = 200.0
+margin_bottom = 170.0
+
+[node name="Back" type="ColorRect" parent="HUD/Preview"]
+margin_left = 200.0
+margin_right = 566.0
+margin_bottom = 200.0
+
+[node name="Unit" type="Label" parent="HUD/Preview/Back"]
+margin_right = 100.0
+margin_bottom = 200.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Zergling"
+align = 1
+valign = 1
+
+[node name="HP" type="Label" parent="HUD/Preview/Back"]
+margin_left = -200.0
+margin_top = 170.0
+margin_bottom = 200.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "100/100"
+align = 1
+valign = 1
+
+[node name="Label" type="Label" parent="HUD/Preview/Back"]
+margin_left = 100.0
+margin_right = 366.0
+margin_bottom = 200.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Damage: 10
+Armor: 1
+Speed: 5"
+align = 1
+valign = 1
