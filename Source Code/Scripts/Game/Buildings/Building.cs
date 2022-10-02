@@ -4,6 +4,8 @@ public abstract class Building : MeshInstance
     public abstract float Regen { get; set; }
     public void Ruin()
     {
-
+    }
+    public static void ActivateBuildingMode(string building)
+    {
     }
 }

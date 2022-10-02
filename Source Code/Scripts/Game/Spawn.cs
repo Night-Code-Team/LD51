@@ -1,11 +1,8 @@
-using System.IO;
 public class Spawn : Timer
 {
     private void OnSpawnTimeout()
     {
         Random rng = new Random();
-        float rngx = 0;
-        float rngy = 0;
         for (int i = 0; i <= 5; i++)
         {
             string[] enemies = System.IO.Directory.GetFiles(@"Assets\Templates\NPC");

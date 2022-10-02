@@ -181,6 +181,11 @@ margin_top = 568.0
 margin_right = 1366.0
 margin_bottom = 768.0
 
+[node name="Back" type="ColorRect" parent="HUD/Abilities"]
+material = ExtResource( 20 )
+margin_right = 400.0
+margin_bottom = 200.0
+
 [node name="MainBase" type="Button" parent="HUD/Abilities"]
 margin_right = 100.0
 margin_bottom = 100.0
@@ -239,11 +244,6 @@ margin_bottom = 200.0
 text = "Turret4"
 script = ExtResource( 7 )
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Abilities"]
-material = ExtResource( 20 )
-margin_right = 400.0
-margin_bottom = 200.0
-
 [node name="Preview" type="Control" parent="HUD"]
 margin_left = 400.0
 margin_top = 618.0
@@ -293,3 +293,43 @@ align = 1
 valign = 1
 
 [connection signal="timeout" from="Board/Spawn" to="Board/Spawn" method="OnSpawnTimeout"]
+[connection signal="button_down" from="HUD/Abilities/MainBase" to="HUD/Abilities/MainBase" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/MainBase" to="HUD/Abilities/MainBase" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/MainBase" to="HUD/Abilities/MainBase" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/MainBase" to="HUD/Abilities/MainBase" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/MainBase" to="HUD/Abilities/MainBase" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/ArrowTower" to="HUD/Abilities/ArrowTower" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/ArrowTower" to="HUD/Abilities/ArrowTower" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/ArrowTower" to="HUD/Abilities/ArrowTower" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/ArrowTower" to="HUD/Abilities/ArrowTower" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/ArrowTower" to="HUD/Abilities/ArrowTower" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/MagicTower" to="HUD/Abilities/MagicTower" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/MagicTower" to="HUD/Abilities/MagicTower" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/MagicTower" to="HUD/Abilities/MagicTower" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/MagicTower" to="HUD/Abilities/MagicTower" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/MagicTower" to="HUD/Abilities/MagicTower" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/UpgradeAttack" to="HUD/Abilities/UpgradeAttack" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/UpgradeAttack" to="HUD/Abilities/UpgradeAttack" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/UpgradeAttack" to="HUD/Abilities/UpgradeAttack" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/UpgradeAttack" to="HUD/Abilities/UpgradeAttack" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/UpgradeAttack" to="HUD/Abilities/UpgradeAttack" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/UpgradeDefence" to="HUD/Abilities/UpgradeDefence" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/UpgradeDefence" to="HUD/Abilities/UpgradeDefence" method="OnButtonDown"]
+[connection signal="mouse_entered" from="HUD/Abilities/UpgradeDefence" to="HUD/Abilities/UpgradeDefence" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="HUD/Abilities/UpgradeDefence" to="HUD/Abilities/UpgradeDefence" method="OnMouseExited"]
+[connection signal="pressed" from="HUD/Abilities/UpgradeDefence" to="HUD/Abilities/UpgradeDefence" method="OnButtonPressed"]

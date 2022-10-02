@@ -35,7 +35,7 @@ public class Board : Spatial
                 minimapTile.MarginBottom = j * 4 + 4;
                 minimapTile.MarginLeft = i * 4;
                 minimapTile.MarginRight = i * 4 + 4;
-                Minimap.GetChild(0).AddChild(minimapTile);
+                Minimap.AddChild(minimapTile);
                 MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{Tiles[i, j]}.tscn").Instance<MeshInstance>();
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 AddChild(tile);
