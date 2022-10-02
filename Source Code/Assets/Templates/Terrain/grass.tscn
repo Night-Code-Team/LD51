@@ -3,5 +3,6 @@
 [ext_resource path="res://Assets/Meshes/grass/grass.obj" type="ArrayMesh" id=1]
 
 [node name="grass" type="MeshInstance"]
+transform = Transform( 0.500853, 0, 0, 0, 0.500853, 0, 0, 0, 0.500853, 0, 0, 0 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")

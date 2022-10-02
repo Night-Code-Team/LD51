@@ -3,4 +3,5 @@
 [ext_resource path="res://Assets/Meshes/gold/gold.obj" type="ArrayMesh" id=1]
 
 [node name="gold" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = ExtResource( 1 )

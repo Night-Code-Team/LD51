@@ -27,7 +27,7 @@ public class Board : Spatial
             for (int j = 0; j < 50; j++)
             {
                 Tiles[i, j] = BlessRNG(tileWeights);
-                ColorRect minimapTile = GD.Load<PackedScene>($"res://Assets/Scenes/MinimapTile.tscn").Instance<ColorRect>();
+                ColorRect minimapTile = GD.Load<PackedScene>($"res://Assets/Scenes/Game/MinimapTile.tscn").Instance<ColorRect>();
                 minimapTile.Material = GD.Load<Material>($"res://Assets/Textures/Interface/Minimap/{Tiles[i, j]}.tres");
                 minimapTile.MarginTop = j * 4;
                 minimapTile.MarginBottom = j * 4 + 4;
@@ -38,7 +38,7 @@ public class Board : Spatial
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 AddChild(tile);
             }
-        Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/MapPosition.tscn").Instance<ColorRect>());
+        Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/Game/MapPosition.tscn").Instance<ColorRect>());
     }
     /// <summary>
     /// Выдаём название тайла рандомно, с учётом его веса
