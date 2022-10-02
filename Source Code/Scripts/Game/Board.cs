@@ -27,7 +27,7 @@ public class Board : Spatial
             for (int j = 0; j < 50; j++)
             {
                 Tiles[i, j] = BlessRNG(tileWeights);
-                ColorRect minimapTile = GD.Load<PackedScene>($"res://Assets/Scenes/MinimapTile.tscn").Instance<ColorRect>();
+                ColorRect minimapTile = GD.Load<PackedScene>($"res://Assets/Scenes/Game/MinimapTile.tscn").Instance<ColorRect>();
                 minimapTile.Material = GD.Load<Material>($"res://Assets/Textures/Interface/Minimap/{Tiles[i, j]}.tres");
                 minimapTile.MarginTop = j * 4;
                 minimapTile.MarginBottom = j * 4 + 4;

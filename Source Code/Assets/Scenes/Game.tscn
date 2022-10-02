@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scenes/MSAA.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Screenshot_4.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
 [ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
 [ext_resource path="res://chasy_karmannye_grand_priks_zoloto.jpg" type="Texture" id=10]
-[ext_resource path="res://Assets/Scenes/Label.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
 
 [sub_resource type="Shader" id=9]
@@ -83,16 +82,6 @@ light_energy = 0.5
 [node name="HUD" type="Control" parent="."]
 margin_right = 1366.0
 margin_bottom = 768.0
-
-[node name="Label" type="Label" parent="HUD"]
-margin_left = 210.0
-margin_top = 219.0
-margin_right = 1179.0
-margin_bottom = 453.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-valign = 1
-script = ExtResource( 12 )
 
 [node name="Button" type="Button" parent="HUD"]
 margin_right = 300.0
