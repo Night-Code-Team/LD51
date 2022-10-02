@@ -1,9 +1,32 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://985d0e23a7363c7.png" type="Texture" id=1]
 [ext_resource path="res://Screenshot_4.png" type="Texture" id=2]
 [ext_resource path="res://ab66b39c28b511815e34a87e081be248.jpeg" type="Texture" id=3]
 [ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/Templates/forest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Templates/grass.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Templates/gold.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
+[ext_resource path="res://Assets/Templates/lumber.tscn" type="PackedScene" id=9]
+[ext_resource path="res://chasy_karmannye_grand_priks_zoloto.jpg" type="Texture" id=10]
+[ext_resource path="res://Scripts/Game/MapPosition.cs" type="Script" id=11]
+[ext_resource path="res://Assets/Scenes/Label.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform sampler2D Clock;
+
+void fragment()
+{
+	COLOR = texture(Clock, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/Clock = ExtResource( 10 )
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -61,26 +84,78 @@ void fragment()
 shader = SubResource( 3 )
 shader_param/Image = ExtResource( 2 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Root" type="Node2D"]
+
+[node name="Board" type="Spatial" parent="."]
+script = ExtResource( 13 )
+
+[node name="Vision" type="Camera" parent="Board"]
+transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 20, 0 )
+script = ExtResource( 8 )
+
+[node name="forest" parent="Board" instance=ExtResource( 5 )]
+
+[node name="gold" parent="Board" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49687, 0, 0 )
+
+[node name="grass" parent="Board" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9969, 0, 0 )
+
+[node name="lumber" parent="Board" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.49952 )
 
 [node name="HUD" type="Control" parent="."]
 margin_right = 1366.0
 margin_bottom = 768.0
 
+[node name="Label" type="Label" parent="HUD"]
+margin_left = 210.0
+margin_top = 219.0
+margin_right = 1179.0
+margin_bottom = 453.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+script = ExtResource( 12 )
+
+[node name="Button" type="Button" parent="HUD"]
+margin_right = 300.0
+margin_bottom = 30.0
+text = "Menu"
+
+[node name="Time" type="ColorRect" parent="HUD"]
+margin_left = 608.0
+margin_right = 758.0
+margin_bottom = 30.0
+
+[node name="Timer" type="ColorRect" parent="HUD/Time"]
+material = SubResource( 10 )
+margin_right = 30.0
+margin_bottom = 30.0
+
+[node name="Time" type="Label" parent="HUD/Time"]
+margin_left = 30.0
+margin_right = 150.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "00:00"
+align = 1
+valign = 1
+
 [node name="Resources" type="ColorRect" parent="HUD"]
-margin_left = 800.0
+margin_left = 1066.0
 margin_right = 1366.0
-margin_bottom = 70.0
+margin_bottom = 30.0
 
 [node name="Gold" type="ColorRect" parent="HUD/Resources"]
 material = SubResource( 6 )
-margin_right = 70.0
-margin_bottom = 70.0
+margin_right = 30.0
+margin_bottom = 30.0
 
 [node name="Value" type="Label" parent="HUD/Resources/Gold"]
-margin_left = 70.0
-margin_right = 283.0
-margin_bottom = 70.0
+margin_left = 30.0
+margin_right = 150.0
+margin_bottom = 30.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1
@@ -88,47 +163,31 @@ valign = 1
 
 [node name="Tree" type="ColorRect" parent="HUD/Resources"]
 material = SubResource( 8 )
-margin_left = 284.0
-margin_right = 354.0
-margin_bottom = 70.0
+margin_left = 150.0
+margin_right = 180.0
+margin_bottom = 30.0
 
 [node name="Value" type="Label" parent="HUD/Resources/Tree"]
-margin_left = 70.0
-margin_right = 283.0
-margin_bottom = 70.0
+margin_left = 30.0
+margin_right = 150.0
+margin_bottom = 30.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1
 valign = 1
-
-[node name="Time" type="ColorRect" parent="HUD"]
-margin_left = 500.0
-margin_right = 800.0
-margin_bottom = 70.0
-
-[node name="Timer" type="Label" parent="HUD/Time"]
-margin_right = 70.0
-margin_bottom = 70.0
-
-[node name="Time" type="Label" parent="HUD/Time"]
-margin_left = 70.0
-margin_right = 300.0
-margin_bottom = 70.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "00:00"
-align = 1
-valign = 1
-
-[node name="Button" type="Button" parent="HUD"]
-margin_right = 500.0
-margin_bottom = 70.0
-text = "Menu"
 
 [node name="Minimap" type="ColorRect" parent="HUD"]
 material = SubResource( 2 )
 margin_top = 568.0
 margin_right = 400.0
 margin_bottom = 768.0
+
+[node name="MapPosition" type="ColorRect" parent="HUD/Minimap"]
+margin_left = 195.0
+margin_top = 95.0
+margin_right = 205.0
+margin_bottom = 105.0
+script = ExtResource( 11 )
 
 [node name="Abilities" type="Control" parent="HUD"]
 margin_left = 966.0
@@ -188,44 +247,48 @@ text = "Turret4"
 
 [node name="Preview" type="Control" parent="HUD"]
 margin_left = 400.0
-margin_top = 568.0
+margin_top = 618.0
 margin_right = 966.0
 margin_bottom = 768.0
 
 [node name="Image" type="ColorRect" parent="HUD/Preview"]
 material = SubResource( 4 )
-margin_right = 200.0
-margin_bottom = 170.0
+margin_right = 120.0
+margin_bottom = 120.0
 
 [node name="Back" type="ColorRect" parent="HUD/Preview"]
-margin_left = 200.0
+margin_left = 120.0
 margin_right = 566.0
-margin_bottom = 200.0
+margin_bottom = 150.0
 
 [node name="Unit" type="Label" parent="HUD/Preview/Back"]
-margin_right = 100.0
-margin_bottom = 200.0
+margin_right = 180.0
+margin_bottom = 150.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Zergling"
 align = 1
 valign = 1
 
-[node name="HP" type="Label" parent="HUD/Preview/Back"]
-margin_left = -200.0
-margin_top = 170.0
-margin_bottom = 200.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "100/100"
-align = 1
-valign = 1
-
 [node name="Label" type="Label" parent="HUD/Preview/Back"]
-margin_left = 100.0
-margin_right = 366.0
-margin_bottom = 200.0
+margin_left = 180.0
+margin_right = 446.0
+margin_bottom = 150.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Damage: 10
 Armor: 1
 Speed: 5"
+align = 1
+valign = 1
+
+[node name="HP Back" type="ColorRect" parent="HUD/Preview/Back"]
+margin_left = -120.0
+margin_top = 120.0
+margin_bottom = 150.0
+
+[node name="HP" type="Label" parent="HUD/Preview/Back/HP Back"]
+margin_right = 120.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "100/100"
 align = 1
 valign = 1

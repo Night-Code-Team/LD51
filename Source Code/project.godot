@@ -12,6 +12,7 @@ config_version=4
 
 config/name="LD51"
 run/main_scene="res://Assets/Scenes/NCT.tscn"
+boot_splash/show_image=false
 boot_splash/image="res://Assets/Images/Yen.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
@@ -21,10 +22,21 @@ config/icon="res://Assets/Images/Yen.png"
 
 window/size/width=1366
 window/size/height=768
+window/size/fullscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+LeftClick={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [mono]
 
