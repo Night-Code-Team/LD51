@@ -1,16 +1,10 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://985d0e23a7363c7.png" type="Texture" id=1]
 [ext_resource path="res://Screenshot_4.png" type="Texture" id=2]
 [ext_resource path="res://ab66b39c28b511815e34a87e081be248.jpeg" type="Texture" id=3]
 [ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
-[ext_resource path="res://Assets/Templates/forest.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Templates/grass.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Templates/gold.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
-[ext_resource path="res://Assets/Templates/lumber.tscn" type="PackedScene" id=9]
 [ext_resource path="res://chasy_karmannye_grand_priks_zoloto.jpg" type="Texture" id=10]
-[ext_resource path="res://Scripts/Game/MapPosition.cs" type="Script" id=11]
 [ext_resource path="res://Assets/Scenes/Label.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
 
@@ -56,20 +50,6 @@ void fragment()
 shader = SubResource( 7 )
 shader_param/Tree = ExtResource( 3 )
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform sampler2D Map;
-
-void fragment()
-{
-	COLOR = texture(Map, UV);
-}"
-
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/Map = ExtResource( 1 )
-
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
@@ -92,17 +72,6 @@ script = ExtResource( 13 )
 [node name="Vision" type="Camera" parent="Board"]
 transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 20, 0 )
 script = ExtResource( 8 )
-
-[node name="forest" parent="Board" instance=ExtResource( 5 )]
-
-[node name="gold" parent="Board" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49687, 0, 0 )
-
-[node name="grass" parent="Board" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9969, 0, 0 )
-
-[node name="lumber" parent="Board" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.49952 )
 
 [node name="HUD" type="Control" parent="."]
 margin_right = 1366.0
@@ -176,18 +145,10 @@ text = "0"
 align = 1
 valign = 1
 
-[node name="Minimap" type="ColorRect" parent="HUD"]
-material = SubResource( 2 )
+[node name="Minimap" type="Control" parent="HUD"]
 margin_top = 568.0
 margin_right = 400.0
 margin_bottom = 768.0
-
-[node name="MapPosition" type="ColorRect" parent="HUD/Minimap"]
-margin_left = 195.0
-margin_top = 95.0
-margin_right = 205.0
-margin_bottom = 105.0
-script = ExtResource( 11 )
 
 [node name="Abilities" type="Control" parent="HUD"]
 margin_left = 966.0
