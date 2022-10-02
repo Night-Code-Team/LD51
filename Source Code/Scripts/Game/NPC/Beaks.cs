@@ -1,4 +1,3 @@
-using System;
 public class Beaks : NPC
 {
     public override int HP { get; protected set; }
@@ -16,5 +15,12 @@ public class Beaks : NPC
     {
         throw new NotImplementedException();
     }
-
+    public override void _Ready()
+    {
+        GetChild<AnimationPlayer>(1).Play("Rest");
+    }
+    public override void _Process(float delta)
+    {
+        MoveAndSlide(new Vector3(1, 0, 0));
+    }
 }

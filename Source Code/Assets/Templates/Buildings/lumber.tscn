@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Meshes/lumber/lumber.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scripts/Game/Buildings/Lumbermill.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Game/Buildings/TreeTick.cs" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.907613, 0.620704, 1 )
 
 [node name="lumber" type="MeshInstance"]
 mesh = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.28 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1.02864, 0, 0, 0, 1.07814, 0, 0, 0, 0.912419, 1.29332, 1.10627, 0.131404 )
+shape = SubResource( 1 )
+
+[node name="Tick" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+script = ExtResource( 3 )
+
+[connection signal="timeout" from="Tick" to="Tick" method="OnTimerTimeout"]

@@ -11,6 +11,8 @@ public class Board : Spatial
     public string[,] Tiles { get; private set; } = new string[100, 50];
     public override void _Ready()
     {
+        Resources.Gold = 1000;
+        Resources.Tree = 500;
         Control Minimap = GetNode<Control>("/root/Root/HUD/Minimap");
         for (int i = 1; i < weights.Length; i++)
         {

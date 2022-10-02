@@ -10,4 +10,8 @@ public abstract class NPC : KinematicBody
     {
         GetParent().RemoveChild(this);
     }
+    public virtual void Collision()
+    {
+
+    }
 }
