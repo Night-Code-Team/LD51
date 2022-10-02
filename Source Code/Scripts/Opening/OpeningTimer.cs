@@ -13,9 +13,9 @@ public class OpeningTimer : Timer
         else
         {
 #if DEBUG
-            GetTree().ChangeScene("res://Assets/Scenes/Game.tscn");
+            GetTree().ChangeScene("res://Assets/Scenes/Game/Game.tscn");
 #else
-            GetTree().ChangeScene("res://Assets/Scenes/Main Menu.tscn");
+            GetTree().ChangeScene("res://Assets/Scenes/Main Menu/Main Menu.tscn");
 #endif
         }
     }

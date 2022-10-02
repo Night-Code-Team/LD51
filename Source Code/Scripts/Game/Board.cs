@@ -38,7 +38,7 @@ public class Board : Spatial
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 AddChild(tile);
             }
-        Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/MapPosition.tscn").Instance<ColorRect>());
+        Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/Game/MapPosition.tscn").Instance<ColorRect>());
     }
     /// <summary>
     /// Выдаём название тайла рандомно, с учётом его веса
