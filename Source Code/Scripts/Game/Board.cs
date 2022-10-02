@@ -11,6 +11,8 @@ public class Board : Spatial
     public string[,] Tiles { get; private set; } = new string[100, 50];
     public override void _Ready()
     {
+        Resources.Gold = 1000;
+        Resources.Tree = 500;
         Control Minimap = GetNode<Control>("/root/Root/HUD/Minimap");
         for (int i = 1; i < weights.Length; i++)
         {
@@ -33,7 +35,7 @@ public class Board : Spatial
                 minimapTile.MarginBottom = j * 4 + 4;
                 minimapTile.MarginLeft = i * 4;
                 minimapTile.MarginRight = i * 4 + 4;
-                Minimap.AddChild(minimapTile);
+                Minimap.GetChild(0).AddChild(minimapTile);
                 MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{Tiles[i, j]}.tscn").Instance<MeshInstance>();
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 AddChild(tile);
