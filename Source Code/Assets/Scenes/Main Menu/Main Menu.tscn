@@ -1,3 +1,86 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://Assets/Fonts/Witcher Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Buttons/Menu Buttons/SettingsButton.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Buttons/Menu Buttons/Quit.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Buttons/Menu Buttons/Start.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/MainMenu/MainMenu.cs" type="Script" id=5]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Control" type="Control" parent="."]
+margin_left = 2.0
+margin_right = 1366.0
+margin_bottom = 770.0
+rect_pivot_offset = Vector2( 590, 385 )
+
+[node name="Start" type="Button" parent="Control"]
+margin_left = 474.0
+margin_top = 160.0
+margin_right = 910.0
+margin_bottom = 272.0
+script = ExtResource( 4 )
+
+[node name="Text" type="Label" parent="Control/Start"]
+margin_left = 6.0
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 129.0
+custom_fonts/font = ExtResource( 1 )
+text = "START
+"
+align = 1
+valign = 1
+
+[node name="Settings" type="Button" parent="Control"]
+margin_left = 474.0
+margin_top = 336.0
+margin_right = 910.0
+margin_bottom = 442.0
+script = ExtResource( 2 )
+
+[node name="Text" type="Label" parent="Control/Settings"]
+margin_left = 4.0
+margin_top = 26.0
+margin_right = 438.0
+margin_bottom = 137.0
+custom_fonts/font = ExtResource( 1 )
+text = "SETTINGS
+"
+align = 1
+valign = 1
+
+[node name="Quit" type="Button" parent="Control"]
+margin_left = 472.0
+margin_top = 516.0
+margin_right = 908.0
+margin_bottom = 624.0
+script = ExtResource( 3 )
+
+[node name="Text" type="Label" parent="Control/Quit"]
+margin_left = 4.0
+margin_top = 28.0
+margin_right = 436.0
+margin_bottom = 129.0
+custom_fonts/font = ExtResource( 1 )
+text = "QUIT
+"
+align = 1
+valign = 1
+
+[connection signal="button_down" from="Control/Start" to="Control/Start" method="OnButtonDown"]
+[connection signal="button_up" from="Control/Start" to="Control/Start" method="OnButtonUp"]
+[connection signal="mouse_entered" from="Control/Start" to="Control/Start" method="OnButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/Start" to="Control/Start" method="OnButtonMouseExited"]
+[connection signal="pressed" from="Control/Start" to="Control/Start" method="_OnButtonPressed"]
+[connection signal="button_down" from="Control/Settings" to="Control/Settings" method="OnButtonDown"]
+[connection signal="button_up" from="Control/Settings" to="Control/Settings" method="OnButtonUp"]
+[connection signal="mouse_entered" from="Control/Settings" to="Control/Settings" method="OnButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/Settings" to="Control/Settings" method="OnButtonMouseExited"]
+[connection signal="pressed" from="Control/Settings" to="Control/Settings" method="_OnButtonPressed"]
+[connection signal="button_down" from="Control/Quit" to="Control/Quit" method="OnButtonDown"]
+[connection signal="button_up" from="Control/Quit" to="Control/Quit" method="OnButtonUp"]
+[connection signal="mouse_entered" from="Control/Quit" to="Control/Quit" method="OnButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/Quit" to="Control/Quit" method="OnButtonMouseExited"]
+[connection signal="pressed" from="Control/Quit" to="Control/Quit" method="_OnButtonPressed"]
