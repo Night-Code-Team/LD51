@@ -1,0 +1,7 @@
+Building,Damage,Hp regen,Hp
+arrow tower,20,5,100
+magic tower,40,5,200
+wall,0,10,300
+main base,5,10,800
+mine,0,0,100
+sawmill,0,0,100
