@@ -3,6 +3,7 @@ public abstract class Building : Tile
     public abstract float HP { get; set; }
     public abstract float MaxHP { get; set; }
     public abstract float Regen { get; set; }
+    public abstract (int, int) Cost { get; protected set; }
     public Material Red { get; set; }
     public Material Green { get; set; }
     public Material Default { get; set; }
@@ -23,7 +24,7 @@ public abstract class Building : Tile
             Ruin();
         }
     }
-    public void Ruin()
+    public virtual void Ruin()
     {
         Board board = GetNode<Board>("/root/Root/Board");
         Tile[,] tiles = board.Tiles;
@@ -47,6 +48,7 @@ public abstract class Building : Tile
         }
         tiles[X, Y].Translation = Translation;
         board.GetNode("Tiles").AddChild(tiles[X, Y]);
+        GetNode<Board>("/root/Root/Board").Buildings.Remove(this);
         GetNode("/root/Root/Board/Tiles").RemoveChild(this);
     }
 }

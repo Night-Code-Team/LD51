@@ -3,7 +3,7 @@ public class Spawn : Timer
     private void OnSpawnTimeout()
     {
         Random rng = new Random();
-        for (int i = 0; i <= 15; i++)
+        for (int i = 0; i <= 10; i++)
         {
             string[] enemies = System.IO.Directory.GetFiles(@"Assets\Templates\NPC");
             KinematicBody Enemy = GD.Load<PackedScene>($"res://{enemies[rng.Next(0, 2)]}").Instance<KinematicBody>();
