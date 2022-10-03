@@ -8,11 +8,11 @@ public class Board : Spatial
     /// <summary>
     /// Массив тайлов карты
     /// </summary>
-    public MeshInstance[,] Tiles { get; private set; } = new MeshInstance[100, 50];
-    public List<Building> Buildings { get; private set; } = new List<Building>();
+    public Tile[,] Tiles { get; private set; } = new Tile[100, 50];
 
     public static Building NewBuilding { get; set; }
     public static bool BuildingModeActive { get; set; }
+    public static Vector3 Main { get; set; }
     public override void _Ready()
     {
         Resources.Gold = 1000;
@@ -40,7 +40,7 @@ public class Board : Spatial
                 minimapTile.MarginLeft = i * 4;
                 minimapTile.MarginRight = i * 4 + 4;
                 Minimap.AddChild(minimapTile);
-                MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{tileName}.tscn").Instance<MeshInstance>();
+                Tile tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{tileName}.tscn").Instance<Tile>();
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 GetNode("Tiles").AddChild(tile);
                 Tiles[i, j] = tile;
@@ -69,10 +69,21 @@ public class Board : Spatial
         BuildingModeActive = true;
         NewBuilding = GD.Load<PackedScene>($"res://Assets/Templates/Buildings/{name}.tscn").Instance<Building>();
         GetNode("Tiles").AddChild(NewBuilding);
+        NewBuilding.GetChild(0).GetChild<CollisionShape>(0).Disabled = true;
     }
     public void DeactivateBuildingMode()
     {
         BuildingModeActive = false;
         NewBuilding = null;
+    }
+    public void MainEstablished()
+    {
+        foreach (Button button in GetNode("/root/Root/HUD/Abilities").GetChildren())
+        {
+            if (button.Text != "Main")
+                button.Disabled = false;
+            else
+                button.Disabled = true;
+        }
     }
 }

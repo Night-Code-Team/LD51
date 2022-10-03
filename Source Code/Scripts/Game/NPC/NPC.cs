@@ -4,8 +4,7 @@ public abstract class NPC : KinematicBody
     public abstract int HP { get; protected set; }
     public abstract int Damage { get; protected set; }
     public abstract float Speed { get; protected set; }
-    public Vector3 Dest { get; set; } = new Vector3(100, 100, 100);
-    protected virtual Vector3 ChooseTarget(List<Building> buildings) => new Vector3(0, 0, 0);
+    public static Vector3 Dest { get; set; } = new Vector3(100, 100, 100);
     protected virtual void Move(Vector3 dest)
     {
         Vector3 direction = (dest - Translation).Normalized();
@@ -26,8 +25,8 @@ public abstract class NPC : KinematicBody
     }
     protected void OnTimerTimout()
     {
+        Dest = new Vector3(0, 0, 0);
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
-        Dest = ChooseTarget(GetNode<Board>("/root/Root/Board").Buildings);
     }
     public override void _Ready()
     {

@@ -17,3 +17,4 @@ transform = Transform( 1.07171, 0, 0, 0, 2.09122, 0, 0, 0, 1.06437, 2.5, 2.88947
 shape = SubResource( 1 )
 
 [connection signal="mouse_entered" from="KinematicBody" to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="KinematicBody" to="." method="OnMouseExited"]

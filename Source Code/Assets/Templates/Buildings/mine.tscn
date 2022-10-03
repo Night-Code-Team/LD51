@@ -21,4 +21,6 @@ shape = SubResource( 1 )
 autostart = true
 script = ExtResource( 2 )
 
+[connection signal="mouse_entered" from="KinematicBody" to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="KinematicBody" to="." method="OnMouseExited"]
 [connection signal="timeout" from="Tick" to="Tick" method="OnTimerTimeout"]
