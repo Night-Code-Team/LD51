@@ -72,6 +72,7 @@ public abstract class Terrain : MeshInstance
                     List<MeshInstance> list = GetNode<Board>("/root/Root/Board").Tiles;
                     building.SetSurfaceMaterial(0, building.Default);
                     list[list.IndexOf(this)] = building;
+                    GetNode<Board>("/root/Root/Board").Buildings.Add(building);
                     Board.BuildingModeActive = false;
                     GetNode("/root/Root/Board/Tiles").RemoveChild(building);
                 }

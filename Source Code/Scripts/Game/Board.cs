@@ -9,6 +9,7 @@ public class Board : Spatial
     /// Массив тайлов карты
     /// </summary>
     public List<MeshInstance> Tiles { get; private set; } = new List<MeshInstance>();
+    public List<Building> Buildings { get; private set; } = new List<Building>();
 
     public static Building NewBuilding { get; set; }
     public static bool BuildingModeActive { get; set; }

@@ -284,6 +284,12 @@ text = "100/100"
 align = 1
 valign = 1
 
+[node name="Label" type="Label" parent="HUD"]
+margin_left = 304.0
+margin_top = 216.0
+margin_right = 1017.0
+margin_bottom = 462.0
+
 [connection signal="timeout" from="Board/Spawn" to="Board/Spawn" method="OnSpawnTimeout"]
 [connection signal="button_down" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonDown"]
 [connection signal="button_up" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonUp"]

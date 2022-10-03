@@ -2,25 +2,17 @@ public class Beaks : NPC
 {
     public override int HP { get; protected set; }
     public override int Damage { get; protected set; }
-    public override float Speed { get; protected set; }
-    public override void ChooseTarget()
+    public override float Speed { get; protected set; } = 5;
+    protected override void Move(Vector3 dest)
     {
-        throw new NotImplementedException();
+        base.Move(dest);
     }
-    public override void Move()
+    protected override void Attack(Building target)
     {
-        throw new NotImplementedException();
-    }
-    public override void Attack()
-    {
-        throw new NotImplementedException();
+        base.Attack(target);
     }
     public override void _Ready()
     {
         GetChild<AnimationPlayer>(1).Play("Rest");
-    }
-    public override void _Process(float delta)
-    {
-        MoveAndSlide(new Vector3(1, 0, 0));
     }
 }
