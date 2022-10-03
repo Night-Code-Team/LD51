@@ -88,7 +88,7 @@ public abstract class Tile : MeshInstance
                     if (building.Name == "main")
                     {
                         board.MainEstablished();
-                        NPC.Dest = Translation;
+                        Board.Main = Translation;
                     }
                     tiles[X, Y] = GD.Load<PackedScene>($"res://Assets/Templates/Buildings/{building.TileName}.tscn").Instance<Tile>();
                     tiles[X, Y].Translation = Translation;

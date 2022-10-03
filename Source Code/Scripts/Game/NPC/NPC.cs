@@ -54,7 +54,7 @@ public abstract class NPC : KinematicBody
     protected void OnTimerTimout()
     {
         Dest = Board.Main;
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("Rest");
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
     }
     public override void _Ready()
     {
@@ -64,6 +64,7 @@ public abstract class NPC : KinematicBody
     {
         if (!attack && Dest != new Vector3(100, 100, 100))
         {
+            GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
             Move(Dest);
         }
     }
