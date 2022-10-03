@@ -389,7 +389,7 @@ tracks/13/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1
 [sub_resource type="CapsuleShape" id=10]
 
 [node name="beaks" type="KinematicBody"]
-transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+transform = Transform( -1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0, 0, 0 )
 script = ExtResource( 4 )
 
 [node name="Арматура" type="Spatial" parent="."]

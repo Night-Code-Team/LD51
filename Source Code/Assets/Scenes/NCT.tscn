@@ -56,9 +56,6 @@ anims/Open = SubResource( 2 )
 material = ExtResource( 1 )
 margin_right = 1366.0
 margin_bottom = 768.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer" type="Timer" parent="UI"]
 wait_time = 5.0

@@ -1,6 +1,7 @@
 public abstract class Building : Tile
 {
     public abstract float HP { get; set; }
+    public abstract float MaxHP { get; set; }
     public abstract float Regen { get; set; }
     public Material Red { get; set; }
     public Material Green { get; set; }
@@ -8,26 +9,44 @@ public abstract class Building : Tile
     public bool Available { get; set; }
     public override void _Ready()
     {
+        HP = MaxHP;
         Red = GD.Load<Material>($"res://Assets/Textures/Buildings/{TileName}-red.tres");
         Green = GD.Load<Material>($"res://Assets/Textures/Buildings/{TileName}-green.tres");
         Default = GD.Load<Material>($"res://Assets/Textures/Buildings/{TileName}-default.tres");
     }
+    public override void _Process(float delta)
+    {
+        if (HP < MaxHP)
+            HP += Regen;
+        if (HP <= 0)
+        {
+            Ruin();
+        }
+    }
     public void Ruin()
     {
+        Board board = GetNode<Board>("/root/Root/Board");
+        Tile[,] tiles = board.Tiles;
         switch (TileName)
         {
             case "mine":
                 {
-                    return;
+                    tiles[X, Y] = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/gold.tscn").Instance<Tile>();
+                    break;
                 }
             case "lumber":
                 {
-                    return;
+                    tiles[X, Y] = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/forest.tscn").Instance<Tile>();
+                    break;
                 }
             default:
                 {
-                    return;
+                    tiles[X, Y] = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/grass.tscn").Instance<Tile>();
+                    break;
                 }
         }
+        tiles[X, Y].Translation = Translation;
+        board.GetNode("Tiles").AddChild(tiles[X, Y]);
+        GetNode("/root/Root/Board/Tiles").RemoveChild(this);
     }
 }

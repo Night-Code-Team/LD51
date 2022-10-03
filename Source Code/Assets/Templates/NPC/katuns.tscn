@@ -296,7 +296,7 @@ tracks/9/keys = PoolRealArray( 0, 1, -1.32864e-10, 1.38535e-08, 1.1876e-09, -7.2
 [sub_resource type="SphereShape" id=7]
 
 [node name="katuns" type="KinematicBody"]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+transform = Transform( -1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0, 0, 0 )
 script = ExtResource( 5 )
 
 [node name="Арматура" type="Spatial" parent="."]

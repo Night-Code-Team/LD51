@@ -1,7 +1,8 @@
 using System;
 public abstract class NPC : KinematicBody
 {
-    public abstract int HP { get; protected set; }
+    public abstract int HP { get; set; }
+    public abstract int MaxHP { get; set; }
     public abstract int Damage { get; protected set; }
     public abstract float Speed { get; protected set; }
     public static Vector3 Dest { get; set; } = new Vector3(100, 100, 100);
@@ -12,6 +13,7 @@ public abstract class NPC : KinematicBody
     {
         Vector3 direction = (dest - Translation).Normalized();
         Vector3 vel = direction * Speed;
+        LookAt(dest, new Vector3(0, 1, 0));
         MoveAndSlide(vel);
         for (int i = 0; i < GetSlideCount(); i++)
             collision = GetSlideCollision(i);
@@ -22,7 +24,6 @@ public abstract class NPC : KinematicBody
             }
             catch
             {
-                collider = null;
             }
         else
         {
@@ -35,12 +36,12 @@ public abstract class NPC : KinematicBody
                     || collider.TileName == "magic-tower" || collider.TileName == "lumber")
             {
                 attack = true;
-                Attack(collider);
             }
         }
     }
-    protected virtual void Attack(Tile target)
+    protected virtual void Attack(Building target)
     {
+        target.HP -= Damage;
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Attack");
         GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D").Play();
     }
@@ -66,6 +67,17 @@ public abstract class NPC : KinematicBody
         {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
             Move(Dest);
+        }
+        else if (collider != null)
+        {
+            try
+            {
+                Attack((Building)collider);
+            }
+            catch
+            {
+
+            }
         }
     }
 }
