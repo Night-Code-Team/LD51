@@ -12,7 +12,7 @@ script = ExtResource( 2 )
 [node name="KinematicBody" type="KinematicBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
-transform = Transform( 1.18827, 0, 0, 0, 1, 0, 0, 0, 1.21115, 1.23322, 0.5, -1.24022 )
+transform = Transform( 2.50977, 0, 0, 0, 1.663, 0, 0, 0, 2.49891, 7.84066, 2.02702, -2.55041 )
 shape = SubResource( 1 )
 
 [connection signal="mouse_entered" from="KinematicBody" to="." method="OnMouseEntered"]
