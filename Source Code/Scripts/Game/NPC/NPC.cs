@@ -59,10 +59,15 @@ public abstract class NPC : KinematicBody
     }
     public override void _Ready()
     {
+        HP = MaxHP;
         GetChild<AnimationPlayer>(1).Play("Rest");
     }
     public override void _PhysicsProcess(float delta)
     {
+        if (HP < 0)
+        {
+            GetParent().RemoveChild(this);
+        }
         if (!attack && Dest != new Vector3(100, 100, 100))
         {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");

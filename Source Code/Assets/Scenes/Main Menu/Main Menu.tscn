@@ -50,7 +50,6 @@ text = "START
 "
 align = 1
 valign = 1
-percent_visible = -0.2
 
 [node name="Settings" type="Button" parent="Control"]
 margin_left = 511.0

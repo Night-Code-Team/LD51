@@ -92,6 +92,8 @@ script = ExtResource( 17 )
 [node name="Notify" type="AudioStreamPlayer" parent="Board"]
 stream = ExtResource( 18 )
 
+[node name="Enemies" type="Spatial" parent="Board"]
+
 [node name="HUD" type="Control" parent="."]
 
 [node name="Button" type="Button" parent="HUD"]
