@@ -1,13 +1,22 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Scenes/MSAA.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Screenshot_4.png" type="Texture" id=2]
 [ext_resource path="res://ab66b39c28b511815e34a87e081be248.jpeg" type="Texture" id=3]
 [ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
+[ext_resource path="res://Scripts/Game/Spawn.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Buttons/MainButton.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/ArrowTowerButton.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/WallButton.cs" type="Script" id=9]
 [ext_resource path="res://chasy_karmannye_grand_priks_zoloto.jpg" type="Texture" id=10]
-[ext_resource path="res://Assets/Scenes/Label.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MineButton.cs" type="Script" id=11]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/UpgradeAttackButton.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/UpgradeDefenceButton.cs" type="Script" id=14]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MagicTowerButton.cs" type="Script" id=15]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/LumbermillButton.cs" type="Script" id=16]
+[ext_resource path="res://Scripts/Game/Tiles.cs" type="Script" id=17]
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
@@ -80,19 +89,17 @@ script = ExtResource( 8 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0 )
 light_energy = 0.5
 
-[node name="HUD" type="Control" parent="."]
-margin_right = 1366.0
-margin_bottom = 768.0
+[node name="Spawn" type="Timer" parent="Board"]
+wait_time = 10.0
+autostart = true
+script = ExtResource( 5 )
 
-[node name="Label" type="Label" parent="HUD"]
-margin_left = 210.0
-margin_top = 219.0
-margin_right = 1179.0
-margin_bottom = 453.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-valign = 1
-script = ExtResource( 12 )
+[node name="Tiles" type="Spatial" parent="Board"]
+script = ExtResource( 17 )
+
+[node name="Building" type="Spatial" parent="Board"]
+
+[node name="HUD" type="Control" parent="."]
 
 [node name="Button" type="Button" parent="HUD"]
 margin_right = 300.0
@@ -158,12 +165,12 @@ margin_right = 400.0
 margin_bottom = 768.0
 
 [node name="MapTiles" type="Control" parent="HUD/Minimap"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 400.0
+margin_bottom = 200.0
 
 [node name="Enemies" type="Control" parent="HUD/Minimap"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 400.0
+margin_bottom = 200.0
 
 [node name="Abilities" type="Control" parent="HUD"]
 margin_left = 966.0
@@ -171,55 +178,63 @@ margin_top = 568.0
 margin_right = 1366.0
 margin_bottom = 768.0
 
-[node name="Button" type="Button" parent="HUD/Abilities"]
+[node name="Main" type="Button" parent="HUD/Abilities"]
 margin_right = 100.0
 margin_bottom = 100.0
 text = "Main"
+script = ExtResource( 6 )
 
-[node name="Button2" type="Button" parent="HUD/Abilities"]
+[node name="Wall" type="Button" parent="HUD/Abilities"]
 margin_left = 100.0
 margin_right = 200.0
 margin_bottom = 100.0
 text = "Wall"
+script = ExtResource( 9 )
 
-[node name="Button3" type="Button" parent="HUD/Abilities"]
+[node name="Mine" type="Button" parent="HUD/Abilities"]
 margin_left = 200.0
 margin_right = 300.0
 margin_bottom = 100.0
 text = "Mine"
+script = ExtResource( 11 )
 
-[node name="Button4" type="Button" parent="HUD/Abilities"]
+[node name="Lumbermill" type="Button" parent="HUD/Abilities"]
 margin_left = 300.0
 margin_right = 400.0
 margin_bottom = 100.0
 text = "Lumbermill"
+script = ExtResource( 16 )
 
-[node name="Button5" type="Button" parent="HUD/Abilities"]
+[node name="Arrow Turret" type="Button" parent="HUD/Abilities"]
 margin_top = 100.0
 margin_right = 100.0
 margin_bottom = 200.0
 text = "Turret1"
+script = ExtResource( 7 )
 
-[node name="Button6" type="Button" parent="HUD/Abilities"]
+[node name="Magic Turret" type="Button" parent="HUD/Abilities"]
 margin_left = 100.0
 margin_top = 100.0
 margin_right = 200.0
 margin_bottom = 200.0
 text = "Turret2"
+script = ExtResource( 15 )
 
-[node name="Button7" type="Button" parent="HUD/Abilities"]
+[node name="Attack Upgrade" type="Button" parent="HUD/Abilities"]
 margin_left = 200.0
 margin_top = 100.0
 margin_right = 300.0
 margin_bottom = 200.0
 text = "Turret3"
+script = ExtResource( 12 )
 
-[node name="Button8" type="Button" parent="HUD/Abilities"]
+[node name="Defence Upgrade" type="Button" parent="HUD/Abilities"]
 margin_left = 300.0
 margin_top = 100.0
 margin_right = 400.0
 margin_bottom = 200.0
 text = "Turret4"
+script = ExtResource( 14 )
 
 [node name="Preview" type="Control" parent="HUD"]
 margin_left = 400.0
@@ -268,3 +283,29 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "100/100"
 align = 1
 valign = 1
+
+[connection signal="timeout" from="Board/Spawn" to="Board/Spawn" method="OnSpawnTimeout"]
+[connection signal="button_down" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Attack Upgrade" to="HUD/Abilities/Attack Upgrade" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Attack Upgrade" to="HUD/Abilities/Attack Upgrade" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Attack Upgrade" to="HUD/Abilities/Attack Upgrade" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Defence Upgrade" to="HUD/Abilities/Defence Upgrade" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Defence Upgrade" to="HUD/Abilities/Defence Upgrade" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Defence Upgrade" to="HUD/Abilities/Defence Upgrade" method="OnButtonPressed"]

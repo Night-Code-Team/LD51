@@ -6,7 +6,7 @@ public class MagicTowerButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            Building.ActivateBuildingMode("magic-tower");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("magic-tower");
         }
         else
         {

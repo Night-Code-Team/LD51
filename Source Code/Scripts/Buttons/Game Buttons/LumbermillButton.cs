@@ -6,7 +6,7 @@ public class LumbermillButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            Building.ActivateBuildingMode("lumber");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("lumber");
         }
         else
         {

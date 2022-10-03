@@ -8,6 +8,7 @@
 extents = Vector3( 0.907613, 0.620704, 1 )
 
 [node name="lumber" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = ExtResource( 1 )
 script = ExtResource( 2 )
 

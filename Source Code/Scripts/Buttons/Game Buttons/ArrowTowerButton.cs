@@ -6,11 +6,10 @@ public class ArrowTowerButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            Building.ActivateBuildingMode("arrow-tower");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("arrow-tower");
         }
         else
         {
-
         }
     }
 }

@@ -6,7 +6,7 @@ public class WallButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            Building.ActivateBuildingMode("wall");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("wall");
         }
         else
         {

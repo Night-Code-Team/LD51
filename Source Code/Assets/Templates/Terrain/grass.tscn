@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Meshes/grass/grass.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://Assets/Templates/Terrain/grass.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Game/Terrain/Grass.cs" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
 [node name="grass" type="MeshInstance"]
-transform = Transform( 0.500853, 0, 0, 0, 0.500853, 0, 0, 0, 0.500853, 0, 0, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = ExtResource( 1 )
 skeleton = NodePath("")
 script = ExtResource( 2 )

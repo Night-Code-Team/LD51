@@ -8,12 +8,15 @@ public class Board : Spatial
     /// <summary>
     /// Массив тайлов карты
     /// </summary>
-    public string[,] Tiles { get; private set; } = new string[100, 50];
+    public List<MeshInstance> Tiles { get; private set; } = new List<MeshInstance>();
+
+    public static Building NewBuilding { get; set; }
+    public static bool BuildingModeActive { get; set; }
     public override void _Ready()
     {
         Resources.Gold = 1000;
         Resources.Tree = 500;
-        Control Minimap = GetNode<Control>("/root/Root/HUD/Minimap");
+        Control Minimap = GetNode<Control>("/root/Root/HUD/Minimap/MapTiles");
         for (int i = 1; i < weights.Length; i++)
         {
             string tile = weights[i];
@@ -28,17 +31,18 @@ public class Board : Spatial
         for (int i = 0; i < 100; i++)
             for (int j = 0; j < 50; j++)
             {
-                Tiles[i, j] = BlessRNG(tileWeights);
+                string tileName = BlessRNG(tileWeights);
                 ColorRect minimapTile = GD.Load<PackedScene>($"res://Assets/Scenes/Game/MinimapTile.tscn").Instance<ColorRect>();
-                minimapTile.Material = GD.Load<Material>($"res://Assets/Textures/Interface/Minimap/{Tiles[i, j]}.tres");
+                minimapTile.Material = GD.Load<Material>($"res://Assets/Textures/Interface/Minimap/{tileName}.tres");
                 minimapTile.MarginTop = j * 4;
                 minimapTile.MarginBottom = j * 4 + 4;
                 minimapTile.MarginLeft = i * 4;
                 minimapTile.MarginRight = i * 4 + 4;
                 Minimap.AddChild(minimapTile);
-                MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{Tiles[i, j]}.tscn").Instance<MeshInstance>();
+                MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{tileName}.tscn").Instance<MeshInstance>();
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
-                AddChild(tile);
+                GetNode("Tiles").AddChild(tile);
+                Tiles.Add(tile);
             }
         Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/Game/MapPosition.tscn").Instance<ColorRect>());
     }
@@ -57,5 +61,17 @@ public class Board : Spatial
                 return weight.Key;
         }
         throw new Exception("Ошибка генерации тайла");
+    }
+
+    public void ActivateBuildingMode(string name)
+    {
+        BuildingModeActive = true;
+        NewBuilding = GD.Load<PackedScene>($"res://Assets/Templates/Buildings/{name}.tscn").Instance<Building>();
+        GetNode("Tiles").AddChild(NewBuilding);
+    }
+    public void DeactivateBuildingMode()
+    {
+        BuildingModeActive = false;
+        NewBuilding = null;
     }
 }

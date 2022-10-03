@@ -6,7 +6,7 @@ public class MineButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            Building.ActivateBuildingMode("mine");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("mine");
         }
         else
         {
