@@ -9,7 +9,7 @@ public class MainBaseButton : SkillButton
         base.OnButtonPressed();
         if (CheckResources())
         {
-            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("main-base");
+            GetNode<Board>("/root/Root/Board").ActivateBuildingMode("main");
         }
         else
         {

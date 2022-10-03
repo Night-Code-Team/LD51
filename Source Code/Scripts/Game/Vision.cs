@@ -12,9 +12,9 @@ public class Vision : Camera
         else if ((mousePos.x >= 1364 || Input.IsActionPressed("ui_right")) && Translation.x < 100)
             Translate(new Vector3(1, 0, 0));
         if ((mousePos.y <= 2 || Input.IsActionPressed("ui_up")) && Translation.z > -45)
-            Translation = new Vector3(Translation.x, 20, Translation.z - 1);
+            Translation = new Vector3(Translation.x, 17, Translation.z - 1);
         else if ((mousePos.y >= 766 || Input.IsActionPressed("ui_down")) && Translation.z < 62.5)
-            Translation = new Vector3(Translation.x, 20, Translation.z + 1);
+            Translation = new Vector3(Translation.x, 17, Translation.z + 1);
         if (mousePos.x > 25 && mousePos.x < 365 && mousePos.y > 593 && Input.IsActionPressed("LeftClick"))
             Translation = (new Vector3(mousePos.x * 0.625F - 125, 20F, mousePos.y * 0.625F - 417.5F));
     }

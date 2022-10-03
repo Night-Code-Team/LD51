@@ -5,7 +5,7 @@
 [ext_resource path="res://ab66b39c28b511815e34a87e081be248.jpeg" type="Texture" id=3]
 [ext_resource path="res://10sm_coin.jpg" type="Texture" id=4]
 [ext_resource path="res://Scripts/Game/Spawn.cs" type="Script" id=5]
-[ext_resource path="res://Scripts/Buttons/MainButton.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MainBaseButton.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/Buttons/Game Buttons/ArrowTowerButton.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/Buttons/Game Buttons/WallButton.cs" type="Script" id=9]
@@ -77,10 +77,11 @@ shader_param/Image = ExtResource( 2 )
 [node name="Root" type="Node2D"]
 
 [node name="Board" type="Spatial" parent="."]
+transform = Transform( 0.997815, 0, 0, 0, 0.997815, 0, 0, 0, 0.997815, 0, 0, 0 )
 script = ExtResource( 13 )
 
 [node name="Vision" type="Camera" parent="Board"]
-transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 20, 0 )
+transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 17, 0 )
 script = ExtResource( 8 )
 
 [node name="MSAA" parent="Board" instance=ExtResource( 1 )]
