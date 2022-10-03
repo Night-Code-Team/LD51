@@ -7,10 +7,16 @@ public class Katuns : NPC
     {
         base.Move(dest);
     }
-    protected override void Attack(Building target)
+    private void DeathTime()
+    {
+        GetParent().RemoveChild(this);
+    }
+    protected override void Attack(Tile target)
     {
         base.Attack(target);
-        GetParent().RemoveChild(this);
+        GetNode<Timer>("Timer2").WaitTime = 1;
+        GetNode<Timer>("Timer2").Start();
+
     }
     public override void _Ready()
     {

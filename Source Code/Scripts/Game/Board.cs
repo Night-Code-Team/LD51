@@ -15,8 +15,8 @@ public class Board : Spatial
     public static Vector3 Main { get; set; }
     public override void _Ready()
     {
-        Resources.Gold = 100;
-        Resources.Tree = 50;
+        Resources.Gold = 1000;
+        Resources.Tree = 500;
         Control Minimap = GetNode<Control>("/root/Root/HUD/Minimap/MapTiles");
         for (int i = 1; i < weights.Length; i++)
         {
