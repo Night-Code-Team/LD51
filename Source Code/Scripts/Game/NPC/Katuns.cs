@@ -10,6 +10,7 @@ public class Katuns : NPC
     protected override void Attack(Building target)
     {
         base.Attack(target);
+        GetParent().RemoveChild(this);
     }
     public override void _Ready()
     {

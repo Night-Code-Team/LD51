@@ -8,7 +8,7 @@ public class Board : Spatial
     /// <summary>
     /// Массив тайлов карты
     /// </summary>
-    public List<MeshInstance> Tiles { get; private set; } = new List<MeshInstance>();
+    public MeshInstance[,] Tiles { get; private set; } = new MeshInstance[100, 50];
     public List<Building> Buildings { get; private set; } = new List<Building>();
 
     public static Building NewBuilding { get; set; }
@@ -43,7 +43,7 @@ public class Board : Spatial
                 MeshInstance tile = GD.Load<PackedScene>($"res://Assets/Templates/Terrain/{tileName}.tscn").Instance<MeshInstance>();
                 tile.Translation = new Vector3(i * 2.5F - 127.5F, 0, j * 2.5F - 62.5F);
                 GetNode("Tiles").AddChild(tile);
-                Tiles.Add(tile);
+                Tiles[i, j] = tile;
             }
         Minimap.AddChild(GD.Load<PackedScene>($"res://Assets/Scenes/Game/MapPosition.tscn").Instance<ColorRect>());
     }

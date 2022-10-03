@@ -1,6 +1,6 @@
 public abstract class Terrain : MeshInstance
 {
-    public abstract string TileName { get; }
+    public abstract string TileName { get; protected set; }
     private Building building;
     public virtual void OnMouseEntered()
     {
@@ -58,6 +58,12 @@ public abstract class Terrain : MeshInstance
                         }
                         return;
                     }
+                default:
+                    {
+                        building.SetSurfaceMaterial(0, building.Red);
+                        building.Available = false;
+                        return;
+                    }
             }
         }
     }
@@ -69,9 +75,9 @@ public abstract class Terrain : MeshInstance
             {
                 if (building.Available)
                 {
-                    List<MeshInstance> list = GetNode<Board>("/root/Root/Board").Tiles;
                     building.SetSurfaceMaterial(0, building.Default);
-                    list[list.IndexOf(this)] = building;
+                    Mesh = GD.Load<PackedScene>($"res://Assets/Templates/Buildings/{building.Name}.tscn").Instance<Building>().Mesh;
+                    TileName = building.BuildingName;
                     GetNode<Board>("/root/Root/Board").Buildings.Add(building);
                     Board.BuildingModeActive = false;
                     GetNode("/root/Root/Board/Tiles").RemoveChild(building);
@@ -81,6 +87,11 @@ public abstract class Terrain : MeshInstance
                     Board.BuildingModeActive = false;
                     GetNode("/root/Root/Board/Tiles").RemoveChild(building);
                 }
+            }
+            if (Input.IsActionJustPressed("RightClick"))
+            {
+                Board.BuildingModeActive = false;
+                GetNode("/root/Root/Board/Tiles").RemoveChild(building);
             }
         }
     }

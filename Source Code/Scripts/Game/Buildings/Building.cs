@@ -15,6 +15,21 @@ public abstract class Building : MeshInstance
     }
     public void Ruin()
     {
+        switch (BuildingName)
+        {
+            case "mine":
+                {
+                    return;
+                }
+            case "lumber":
+                {
+                    return;
+                }
+            default:
+                {
+                    return;
+                }
+        }
     }
     public void OnMouseEntered()
     {
