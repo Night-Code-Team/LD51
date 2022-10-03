@@ -9,7 +9,8 @@ public abstract class NPC : KinematicBody
     {
         Vector3 direction = (dest - Translation).Normalized();
         Vector3 vel = direction * Speed;
-        MoveAndSlide(vel);
+        KinematicCollision collision = MoveAndCollide(vel);
+
     }
     protected virtual void Attack(Building target)
     {
@@ -22,7 +23,6 @@ public abstract class NPC : KinematicBody
     }
     protected virtual void Collision()
     {
-
     }
     protected void OnTimerTimout()
     {
