@@ -355,6 +355,7 @@ bones/9/enabled = true
 bones/9/bound_children = [  ]
 
 [node name="Сфера" type="MeshInstance" parent="Арматура/Skeleton"]
+transform = Transform( 0.999249, 0.0274038, -0.0274141, 0.0274038, 0.000751489, 0.999624, 0.0274141, -0.999625, -4.37114e-08, 0.00557352, -0.203232, -0.203309 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 6 )
