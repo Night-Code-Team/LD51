@@ -7,7 +7,7 @@ public class Beaks : NPC
     {
         base.Move(dest);
     }
-    protected override void Attack(Building target)
+    protected override void Attack(Tile target)
     {
         base.Attack(target);
     }
