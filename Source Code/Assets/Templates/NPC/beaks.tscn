@@ -393,6 +393,7 @@ transform = Transform( -1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, 0
 script = ExtResource( 4 )
 
 [node name="Арматура" type="Spatial" parent="."]
+transform = Transform( 1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0 )
 
 [node name="Skeleton" type="Skeleton" parent="Арматура"]
 bones/0/name = "Bone"
@@ -467,6 +468,7 @@ bones/13/enabled = true
 bones/13/bound_children = [  ]
 
 [node name="beak" type="MeshInstance" parent="Арматура/Skeleton"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 6 )
@@ -477,7 +479,7 @@ anims/Move = SubResource( 4 )
 anims/Rest = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -6.96271e-08, 0, 1.59288, 0, 1, 0, -0.67611, 0, -2.95537e-08, -0.514551, 0, 0 )
+transform = Transform( -0.67611, 0, -9.91807e-08, 0, 1, 0, 9.91808e-08, 0, -1.59288, -0.00680288, 0, 0.330735 )
 shape = SubResource( 10 )
 
 [node name="Timer" type="Timer" parent="."]
