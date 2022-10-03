@@ -16,7 +16,7 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.28 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
-transform = Transform( 1.02864, 0, 0, 0, 1.07814, 0, 0, 0, 0.912419, 1.29332, 1.10627, 0.131404 )
+transform = Transform( 1.21169, 0, 0, 0, 1.07814, 0, 0, 0, 1.75316, 1.52268, 1.46864, -0.974483 )
 shape = SubResource( 1 )
 
 [node name="Tick" type="Timer" parent="."]

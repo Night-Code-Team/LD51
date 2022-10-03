@@ -1,15 +1,15 @@
 public class UI : Control
 {
-    public override void _Ready()
-    {
-        Open();
-    }
-    public void Open()
-    {
-        GetChild<AnimationPlayer>(1).Play("Open");
-    }
-    public void Close()
-    {
-        GetChild<AnimationPlayer>(1).Play("Close");
-    }
+	public override void _Ready()
+	{
+		Open();
+	}
+	public void Open()
+	{
+		GetChild<AnimationPlayer>(1).Play("Open");
+	}
+	public void Close()
+	{
+		GetChild<AnimationPlayer>(1).Play("Close");
+	}
 }

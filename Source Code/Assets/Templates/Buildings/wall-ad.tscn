@@ -13,4 +13,5 @@ script = ExtResource( 2 )
 [node name="KinematicBody" type="KinematicBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 0.503294, 0, 0, 0, 0.754879, 0, 0, 0, 0.801199, 4.55399, 0.0104597, -2.55918 )
 shape = SubResource( 1 )
