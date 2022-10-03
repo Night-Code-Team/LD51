@@ -16,7 +16,7 @@ boot_splash/show_image=false
 boot_splash/image="res://Assets/Images/Yen.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
-config/icon="res://Assets/Images/Yen.png"
+config/icon="res://icon.png"
 
 [display]
 
