@@ -18,7 +18,8 @@
 [ext_resource path="res://Scripts/Buttons/Game Buttons/LumbermillButton.cs" type="Script" id=16]
 [ext_resource path="res://Scripts/Game/Tiles.cs" type="Script" id=17]
 [ext_resource path="res://Assets/Sounds/cant-build.tres" type="AudioStream" id=18]
-[ext_resource path="res://Assets/Templates/Buildings/warp-tower.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/Templates/Buildings/magic-tower.tscn" type="PackedScene" id=19]
+
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
