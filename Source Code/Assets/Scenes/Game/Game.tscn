@@ -9,7 +9,6 @@
 [ext_resource path="res://Scripts/Buttons/Game Buttons/ArrowTowerButton.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/Buttons/Game Buttons/WallButton.cs" type="Script" id=9]
-[ext_resource path="res://chasy_karmannye_grand_priks_zoloto.jpg" type="Texture" id=10]
 [ext_resource path="res://Scripts/Buttons/Game Buttons/MineButton.cs" type="Script" id=11]
 [ext_resource path="res://Scripts/Buttons/Game Buttons/UpgradeAttackButton.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
@@ -18,20 +17,6 @@
 [ext_resource path="res://Scripts/Buttons/Game Buttons/LumbermillButton.cs" type="Script" id=16]
 [ext_resource path="res://Scripts/Game/Tiles.cs" type="Script" id=17]
 [ext_resource path="res://Assets/Sounds/cant-build.tres" type="AudioStream" id=18]
-
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-
-uniform sampler2D Clock;
-
-void fragment()
-{
-	COLOR = texture(Clock, UV);
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/Clock = ExtResource( 10 )
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -45,7 +30,7 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = SubResource( 5 )
-shader_param/Gold = ExtResource( 4 )
+shader_param/Gold = ExtResource( 2 )
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -102,20 +87,17 @@ text = "Menu"
 script = ExtResource( 4 )
 
 [node name="Time" type="ColorRect" parent="HUD"]
-margin_left = 608.0
+margin_left = 639.0
 margin_right = 758.0
 margin_bottom = 30.0
-
-[node name="Timer" type="ColorRect" parent="HUD/Time"]
-material = SubResource( 10 )
-margin_right = 30.0
-margin_bottom = 30.0
+color = Color( 0.247059, 0.239216, 0.278431, 1 )
 
 [node name="Time" type="Label" parent="HUD/Time"]
-margin_left = 30.0
-margin_right = 150.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 119.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "00:00"
 align = 1
 valign = 1
@@ -124,6 +106,7 @@ valign = 1
 margin_left = 1066.0
 margin_right = 1366.0
 margin_bottom = 30.0
+color = Color( 0.247059, 0.239216, 0.278431, 1 )
 
 [node name="Gold" type="ColorRect" parent="HUD/Resources"]
 material = SubResource( 6 )
@@ -134,7 +117,7 @@ margin_bottom = 30.0
 margin_left = 30.0
 margin_right = 150.0
 margin_bottom = 30.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 align = 1
 valign = 1
@@ -149,7 +132,7 @@ margin_bottom = 30.0
 margin_left = 30.0
 margin_right = 150.0
 margin_bottom = 30.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 align = 1
 valign = 1
@@ -221,7 +204,7 @@ margin_left = 200.0
 margin_top = 100.0
 margin_right = 300.0
 margin_bottom = 200.0
-text = "Attack"
+text = "Attack UP"
 script = ExtResource( 12 )
 
 [node name="Defence Upgrade" type="Button" parent="HUD/Abilities"]
@@ -229,7 +212,7 @@ margin_left = 300.0
 margin_top = 100.0
 margin_right = 400.0
 margin_bottom = 200.0
-text = "Defence"
+text = "Defence UP"
 script = ExtResource( 14 )
 
 [node name="Preview" type="Control" parent="HUD"]
