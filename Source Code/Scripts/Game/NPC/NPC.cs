@@ -14,6 +14,7 @@ public abstract class NPC : KinematicBody
     protected virtual void Attack(Building target)
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Attack");
+        GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D").Play();
     }
     protected virtual void Die()
     {
@@ -25,8 +26,7 @@ public abstract class NPC : KinematicBody
     }
     protected void OnTimerTimout()
     {
-        Dest = new Vector3(0, 0, 0);
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
+        GetNode<AnimationPlayer>("AnimationPlayer").Play("Rest");
     }
     public override void _Ready()
     {
