@@ -90,13 +90,23 @@ public abstract class Tile : MeshInstance
                         board.MainEstablished();
                         Board.Main = Translation;
                     }
+                    else if (building.Name == "mine")
+                    {
+                        Tick.GoldTick += 10;
+                    }
+                    else if (building.Name == "lumber")
+                    {
+                        Tick.TreeTick += 15;
+                    }
                     tiles[X, Y] = GD.Load<PackedScene>($"res://Assets/Templates/Buildings/{building.TileName}.tscn").Instance<Tile>();
                     tiles[X, Y].Translation = Translation;
+                    Resources.Gold -= ((Building)tiles[X, Y]).Cost.Item1;
+                    Resources.Tree -= ((Building)tiles[X, Y]).Cost.Item2;
                     board.GetNode("Tiles").AddChild(tiles[X, Y]);
                     GetNode("/root/Root/Board/Tiles").RemoveChild(building);
+                    board.Buildings.Add((Building)tiles[X, Y]);
                     Board.BuildingModeActive = false;
                     GetNode("/root/Root/Board/Tiles").RemoveChild(this);
-
                 }
                 else
                 {

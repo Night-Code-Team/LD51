@@ -6,8 +6,7 @@ public abstract class NPC : KinematicBody
     public abstract int Damage { get; protected set; }
     public abstract float Speed { get; protected set; }
     public static Vector3 Dest { get; set; } = new Vector3(100, 100, 100);
-    private bool attack = false;
-    private KinematicCollision collision = null;
+    protected bool attack = false;
     Tile collider = null;
     protected virtual void Move(Vector3 dest)
     {
@@ -15,35 +14,6 @@ public abstract class NPC : KinematicBody
         Vector3 vel = direction * Speed;
         LookAt(dest, new Vector3(0, 1, 0));
         MoveAndSlide(vel);
-        for (int i = 0; i < GetSlideCount(); i++)
-            collision = GetSlideCollision(i);
-        if (collision != null)
-            try
-            {
-                collider = ((KinematicBody)(collision.Collider)).GetParent<Tile>();
-            }
-            catch
-            {
-            }
-        else
-        {
-            attack = false;
-        }
-        if (collider != null)
-        {
-            if (collider.TileName == "wall" || collider.TileName == "mine"
-                || collider.TileName == "main" || collider.TileName == "arrow-tower"
-                    || collider.TileName == "magic-tower" || collider.TileName == "lumber")
-            {
-                attack = true;
-            }
-        }
-    }
-    protected virtual void Attack(Building target)
-    {
-        target.HP -= Damage;
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("Attack");
-        GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D").Play();
     }
     protected virtual void Die()
     {
@@ -62,6 +32,22 @@ public abstract class NPC : KinematicBody
         HP = MaxHP;
         GetChild<AnimationPlayer>(1).Play("Rest");
     }
+    public virtual void DeathTime()
+    {
+        List<Building> list = GetNode<Board>("/root/Root/Board").Buildings;
+        foreach (Building building in list)
+        {
+            if (Translation.DistanceTo(building.Translation) <= 1)
+            {
+                GetChild<AnimationPlayer>(1).Play("Attack");
+                attack = true;
+                building.HP -= Damage;
+                return;
+            }
+        }
+        attack = false;
+        return;
+    }
     public override void _PhysicsProcess(float delta)
     {
         if (HP < 0)
@@ -72,17 +58,6 @@ public abstract class NPC : KinematicBody
         {
             GetNode<AnimationPlayer>("AnimationPlayer").Play("Move");
             Move(Dest);
-        }
-        else if (collider != null)
-        {
-            try
-            {
-                Attack((Building)collider);
-            }
-            catch
-            {
-
-            }
         }
     }
 }

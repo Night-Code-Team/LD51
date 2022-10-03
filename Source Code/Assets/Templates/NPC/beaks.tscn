@@ -483,12 +483,13 @@ transform = Transform( -0.67611, 0, -9.91807e-08, 0, 1, 0, 9.91808e-08, 0, -1.59
 shape = SubResource( 10 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
 autostart = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-
-[node name="Timer2" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimout"]
 [connection signal="timeout" from="Timer2" to="." method="DeathTime"]
