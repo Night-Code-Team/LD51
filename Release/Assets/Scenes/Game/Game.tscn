@@ -1,0 +1,235 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/Scenes/MSAA.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Textures/Interface/icons/gold.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/Interface/icons/wood.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Game/Menu.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Game/Spawn.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MainBaseButton.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/ArrowTowerButton.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/Game/Vision.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/WallButton.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/Game/Tick.cs" type="Script" id=10]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MineButton.cs" type="Script" id=11]
+[ext_resource path="res://Scripts/Game/Board.cs" type="Script" id=13]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/MagicTowerButton.cs" type="Script" id=15]
+[ext_resource path="res://Scripts/Buttons/Game Buttons/LumbermillButton.cs" type="Script" id=16]
+[ext_resource path="res://Scripts/Game/Tiles.cs" type="Script" id=17]
+[ext_resource path="res://Assets/Sounds/cant-build.tres" type="AudioStream" id=18]
+[ext_resource path="res://Scripts/Game/GoldValue.cs" type="Script" id=19]
+[ext_resource path="res://Scripts/Game/TreeValue.cs" type="Script" id=20]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform sampler2D Gold;
+
+void fragment()
+{
+	COLOR = texture(Gold, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/Gold = ExtResource( 2 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform sampler2D Tree;
+
+void fragment()
+{
+	COLOR = texture(Tree, UV);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/Tree = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=12]
+
+[node name="Root" type="Node2D"]
+position = Vector2( 1, 0 )
+
+[node name="Board" type="Spatial" parent="."]
+transform = Transform( 0.997815, 0, 0, 0, 0.997815, 0, 0, 0, 0.997815, 0, 0, 0 )
+script = ExtResource( 13 )
+
+[node name="Vision" type="Camera" parent="Board"]
+transform = Transform( 1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 17, 0 )
+script = ExtResource( 8 )
+
+[node name="MSAA" parent="Board" instance=ExtResource( 1 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Board"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0 )
+light_energy = 0.5
+
+[node name="Spawn" type="Timer" parent="Board"]
+wait_time = 10.0
+autostart = true
+script = ExtResource( 5 )
+
+[node name="Tiles" type="Spatial" parent="Board"]
+script = ExtResource( 17 )
+
+[node name="Building" type="Spatial" parent="Board"]
+
+[node name="Notify" type="AudioStreamPlayer" parent="Board"]
+stream = ExtResource( 18 )
+
+[node name="Enemies" type="Spatial" parent="Board"]
+
+[node name="HUD" type="Control" parent="."]
+
+[node name="Menu" type="Button" parent="HUD"]
+margin_right = 300.0
+margin_bottom = 30.0
+text = "Menu"
+script = ExtResource( 4 )
+
+[node name="Time" type="ColorRect" parent="HUD"]
+margin_left = 639.0
+margin_right = 758.0
+margin_bottom = 30.0
+color = Color( 0.247059, 0.239216, 0.278431, 1 )
+
+[node name="Time" type="Label" parent="HUD/Time"]
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 119.0
+margin_bottom = 31.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "00:00"
+align = 1
+valign = 1
+
+[node name="Resources" type="ColorRect" parent="HUD"]
+margin_left = 1066.0
+margin_right = 1366.0
+margin_bottom = 30.0
+color = Color( 0.247059, 0.239216, 0.278431, 1 )
+
+[node name="Gold" type="ColorRect" parent="HUD/Resources"]
+material = SubResource( 6 )
+margin_right = 30.0
+margin_bottom = 30.0
+
+[node name="Value" type="Label" parent="HUD/Resources/Gold"]
+margin_left = 30.0
+margin_right = 150.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 1
+valign = 1
+script = ExtResource( 19 )
+
+[node name="Tree" type="ColorRect" parent="HUD/Resources"]
+material = SubResource( 8 )
+margin_left = 150.0
+margin_right = 180.0
+margin_bottom = 30.0
+
+[node name="Value" type="Label" parent="HUD/Resources/Tree"]
+margin_left = 30.0
+margin_right = 150.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 1
+valign = 1
+script = ExtResource( 20 )
+
+[node name="Tick" type="Timer" parent="HUD/Resources"]
+wait_time = 10.0
+autostart = true
+script = ExtResource( 10 )
+
+[node name="Minimap" type="Control" parent="HUD"]
+margin_top = 568.0
+margin_right = 400.0
+margin_bottom = 768.0
+
+[node name="MapTiles" type="Control" parent="HUD/Minimap"]
+margin_right = 400.0
+margin_bottom = 200.0
+
+[node name="Enemies" type="Control" parent="HUD/Minimap"]
+margin_right = 400.0
+margin_bottom = 200.0
+
+[node name="Abilities" type="Control" parent="HUD"]
+margin_left = 966.0
+margin_top = 568.0
+margin_right = 1366.0
+margin_bottom = 768.0
+
+[node name="Main" type="Button" parent="HUD/Abilities"]
+material = SubResource( 12 )
+margin_left = 100.0
+margin_right = 200.0
+margin_bottom = 100.0
+text = "Main"
+script = ExtResource( 6 )
+
+[node name="Wall" type="Button" parent="HUD/Abilities"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 200.0
+text = "Wall"
+script = ExtResource( 9 )
+
+[node name="Mine" type="Button" parent="HUD/Abilities"]
+margin_left = 200.0
+margin_right = 300.0
+margin_bottom = 100.0
+text = "Mine"
+script = ExtResource( 11 )
+
+[node name="Lumbermill" type="Button" parent="HUD/Abilities"]
+margin_left = 300.0
+margin_right = 400.0
+margin_bottom = 100.0
+text = "Lumbermill"
+script = ExtResource( 16 )
+
+[node name="Arrow Turret" type="Button" parent="HUD/Abilities"]
+margin_left = 200.0
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 200.0
+text = "Arrow Tower"
+script = ExtResource( 7 )
+
+[node name="Magic Turret" type="Button" parent="HUD/Abilities"]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 200.0
+text = "Magic Tower"
+script = ExtResource( 15 )
+
+[connection signal="timeout" from="Board/Spawn" to="Board/Spawn" method="OnSpawnTimeout"]
+[connection signal="pressed" from="HUD/Menu" to="HUD/Menu" method="_OnButtonPressed"]
+[connection signal="timeout" from="HUD/Resources/Tick" to="HUD/Resources/Tick" method="OnTick"]
+[connection signal="button_down" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Main" to="HUD/Abilities/Main" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Wall" to="HUD/Abilities/Wall" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Mine" to="HUD/Abilities/Mine" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Lumbermill" to="HUD/Abilities/Lumbermill" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Arrow Turret" to="HUD/Abilities/Arrow Turret" method="OnButtonPressed"]
+[connection signal="button_down" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonDown"]
+[connection signal="button_up" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonUp"]
+[connection signal="pressed" from="HUD/Abilities/Magic Turret" to="HUD/Abilities/Magic Turret" method="OnButtonPressed"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Meshes/mine/mine.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scripts/Game/Buildings/GoldTick.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Game/Buildings/Mine.cs" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="mine" type="MeshInstance"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1.69356, 0, 0, 0, 1, 2.61185, 2.04851, -2.69606 )
+shape = SubResource( 1 )
+
+[node name="Tick" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 2 )
+
+[connection signal="mouse_entered" from="KinematicBody" to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="KinematicBody" to="." method="OnMouseExited"]
+[connection signal="timeout" from="Tick" to="Tick" method="OnTimerTimeout"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Meshes/sand-angle/sand-angle.obj" type="ArrayMesh" id=1]
+
+[node name="sand-angle" type="MeshInstance"]
+mesh = ExtResource( 1 )
