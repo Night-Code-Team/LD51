@@ -57,7 +57,10 @@ bind/9/bone = -1
 bind/9/pose = Transform( 0.00218521, 0.0394921, -1.44222, 1.44056, -0.0797176, -2.05227e-07, -0.0796876, -1.44002, -0.0395525, -0.54549, -0.697811, -0.0453118 )
 
 [sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 1, 1, 1, 0 )
 albedo_texture = ExtResource( 1 )
+metallic_specular = 0.6
+roughness = 0.8
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
 emission_energy = 1.0
@@ -65,7 +68,7 @@ emission_operator = 0
 emission_on_uv2 = false
 emission_texture = ExtResource( 3 )
 normal_enabled = true
-normal_scale = 1.0
+normal_scale = 3.0
 normal_texture = ExtResource( 2 )
 
 [sub_resource type="Animation" id=5]
@@ -354,8 +357,8 @@ bones/9/rest = Transform( -0.0274037, 0.0278605, 0.999236, 0.000763775, 0.999612
 bones/9/enabled = true
 bones/9/bound_children = [  ]
 
-[node name="Сфера" type="MeshInstance" parent="Арматура/Skeleton"]
-transform = Transform( 0.999249, 0.0274038, -0.0274141, 0.0274038, 0.000751489, 0.999624, 0.0274141, -0.999625, -4.37114e-08, 0.00557352, -0.203232, -0.203309 )
+[node name="katuns" type="MeshInstance" parent="Арматура/Skeleton"]
+transform = Transform( 1.29902, 0.035625, -0.0356369, 0.0356235, 0.000976897, 1.29951, 0.0356383, -1.29951, -5.6785e-08, 0.00557352, -0.203232, -0.203309 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 6 )

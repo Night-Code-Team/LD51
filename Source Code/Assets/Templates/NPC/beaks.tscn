@@ -468,7 +468,7 @@ bones/13/enabled = true
 bones/13/bound_children = [  ]
 
 [node name="beak" type="MeshInstance" parent="Арматура/Skeleton"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, 0, 0, 0 )
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 material/0 = SubResource( 6 )
